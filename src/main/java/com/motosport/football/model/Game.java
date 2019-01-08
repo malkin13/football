@@ -2,7 +2,7 @@ package com.motosport.football.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
+@Table(name = "game", schema = "public")
 public class Game {
 
     @Id
@@ -10,12 +10,12 @@ public class Game {
     private Integer id;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(targetEntity = Team.class)
     @JoinColumn(name = "team1_id")
     private Team team1;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(targetEntity = Team.class)
     @JoinColumn(name = "team2_id")
     private Team team2;
 

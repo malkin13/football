@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @Entity
+@Table(name = "group", schema = "public")
 public class Group {
 
     @Id
@@ -24,5 +25,11 @@ public class Group {
     }
     public void setId(Integer id) {
         this.id = id;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Group{id= " + id + "name= " + name + "}";
     }
 }

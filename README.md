@@ -23,5 +23,13 @@ use liquibase for db migrations (postgresql 10)
 
 use swagger for REST APIs documentations (http://localhost:8080/swagger-ui/index.html)
 
+p.s swagger use 80 port
 
 app address  - http://localhost:8080/
+
+# --- run & build
+
+to run   : gradle bootRun
+to build : gradle build
+
+

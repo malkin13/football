@@ -7,7 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 @Getter
 @Setter
-
+@Table(name = "team", schema = "public")
 public class Team {
 
     @Id
@@ -17,7 +17,7 @@ public class Team {
     private String name;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(targetEntity = Group.class)
     @JoinColumn(name = "group_id")
     private Group group;
 

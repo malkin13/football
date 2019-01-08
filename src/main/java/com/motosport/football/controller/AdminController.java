@@ -45,7 +45,7 @@ public class AdminController {
         return groupOptional.get();
     }
 
-    @PostMapping("/groups/{id}")
+    @PostMapping("/groups")
     public ResponseEntity<Object> createGroup(@RequestBody Group group) {
         log.debug("create group");
         Group saveGroup = groupRepository.save(group);
