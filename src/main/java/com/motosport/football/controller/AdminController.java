@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +51,6 @@ public class AdminController {
         log.debug("create group");
         Group saveGroup = groupRepository.save(group);
 
-
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(saveGroup.getId()).toUri();
 
@@ -59,7 +59,7 @@ public class AdminController {
     }
 
     @PutMapping("/groups/{id}")
-    public ResponseEntity<Object> updateStudent(@RequestBody Group group, @PathVariable int id) {
+    public ResponseEntity<Object> updateGroup(@RequestBody Group group, @PathVariable int id) {
         log.debug("update group");
         Optional<Group> groupOptional = groupRepository.findById(id);
 
@@ -78,5 +78,10 @@ public class AdminController {
         log.debug("delete group id:"+id);
         groupRepository.deleteById(id);
     }
+
+    //TODO
+    //
+    // 1) Сделать контроллеры для Team и Game
+    // 2) фикс создания group (exception is com.fasterxml.jackson.databind.exc.MismatchedInputException)
 
 }
