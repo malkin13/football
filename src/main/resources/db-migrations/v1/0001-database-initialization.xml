@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="0001" author="molodsov.s.d" runOnChange="true">
+        <comment>Инициализация базы данных</comment>
+
+        <createTable schemaName="public" tableName="group">
+            <column name="id" type="integer" >
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="name" type="char" />
+        </createTable>
+
+        <createTable schemaName="public" tableName="team">
+            <column name="id" type="integer" >
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(256)" />
+            <column name="group_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="team"
+                                 baseColumnNames="group_id"
+                                 constraintName="fk_group_id"
+                                 referencedTableName="group"
+                                 referencedColumnNames="id" />
+
+        <createTable schemaName="public" tableName="game">
+            <column name="id" type="integer">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="team1_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="team2_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="score_team1" type="integer"/>
+            <column name="score_team2" type="integer"/>
+            <column name="team1_state" type="integer"/>
+            <column name="team2_state" type="integer"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="game"
+                                 baseColumnNames="team1_id"
+                                 constraintName="fk_team1_id"
+                                 referencedTableName="team"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="game"
+                                 baseColumnNames="team2_id"
+                                 constraintName="fk_team2_id"
+                                 referencedTableName="team"
+                                 referencedColumnNames="id"/>
+
+        <rollback>
+            <dropTable cascadeConstraints="true" schemaName="public" tableName="time"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

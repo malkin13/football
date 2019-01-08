@@ -1,0 +1,8 @@
+${AnsiColor.BRIGHT_RED} ,--.   ,--.           ,--.            ,---.   ,------.   ,-----.  ,------.  ,--------. 
+${AnsiColor.BRIGHT_RED} |   `.'   |  ,---.  ,-'  '-.  ,---.  '   .-'  |  .--. ' '  .-.  ' |  .--. ' '--.  .--' 
+${AnsiColor.BRIGHT_RED} |  |'.'|  | | .-. | '-.  .-' | .-. | `.  `-.  |  '--' | |  | |  | |  '--'.'    |  |    
+${AnsiColor.BRIGHT_RED} |  |   |  | ' '-' '   |  |   ' '-' ' .-'    | |  | --'  '  '-'  ' |  |\  \     |  |    
+${AnsiColor.BRIGHT_RED} `--'   `--'  `---'    `--'    `---'  `-----'  `--'       `-----'  `--' '--'    `--'
+
+${AnsiColor.BRIGHT_BLUE}:: Motosport Java TestApp :: Running Spring Boot ${spring-boot.version} ::
+:: https://motosport.com/ ::${AnsiColor.DEFAULT}

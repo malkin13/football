@@ -1,0 +1,30 @@
+# default database properties
+database:
+  host: localhost
+  port: 5432
+  username: postgres
+  password: postgres
+
+server:
+  port: 8080
+
+# spring datasource properties
+spring:
+  datasource:
+    url: jdbc:postgresql://${database.host}:${database.port}/${database.username}
+    username: ${database.username}
+    password: ${database.password}
+    driver-class-name: org.postgresql.Driver
+    dbcp2:
+      time-between-eviction-runs-millis: 1
+
+  # migrations
+  liquibase:
+    change-log: classpath:db-migrations/changelog.xml
+
+#logging
+logging:
+  file: ./log/java-football-application.log
+  level:
+    ROOT: OFF
+    com.motosport.football: INFO
