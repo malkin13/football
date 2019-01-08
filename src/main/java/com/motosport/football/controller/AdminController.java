@@ -1,6 +1,10 @@
 package com.motosport.football.controller;
 
 
+import com.motosport.football.model.Group;
+import com.motosport.football.repository.GroupRepository;
+import javassist.NotFoundException;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,10 +13,13 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-/*
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.List;
+import java.util.Optional;
+
 @Slf4j
 @RestController
 @RequestMapping("/")
@@ -21,23 +28,55 @@ public class AdminController {
     private final Logger log = LoggerFactory.getLogger(AdminController.class);
 
     @Autowired
-    private ApplicationContext context;
+    private GroupRepository groupRepository;
 
-    @Autowired
-    private DefaultListableBeanFactory beanFactory;
-
-    @GetMapping("create")
-    public ResponseEntity<String> create() {
-        log.debug("create group");
-        try {
-            // context.getBean(TcpBalancer.class).reloadTcpClients();
-        } catch (Exception ex) {
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return new ResponseEntity<>("done", HttpStatus.OK);
+    @GetMapping("/groups")
+    public List<Group> findAllGroups() {
+        return groupRepository.findAll();
     }
 
+    @GetMapping("/group/{id}")
+    public Group findById(@PathVariable int id) throws NotFoundException {
+        Optional<Group> groupOptional = groupRepository.findById(id);
+
+        if (!groupOptional.isPresent())
+            throw new NotFoundException("can't find id"+id);
+
+        return groupOptional.get();
+    }
+
+    @PostMapping("/groups/{id}")
+    public ResponseEntity<Object> createGroup(@RequestBody Group group) {
+        log.debug("create group");
+        Group saveGroup = groupRepository.save(group);
+
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(saveGroup.getId()).toUri();
+
+        return ResponseEntity.created(location).build();
+
+    }
+
+    @PutMapping("/groups/{id}")
+    public ResponseEntity<Object> updateStudent(@RequestBody Group group, @PathVariable int id) {
+        log.debug("update group");
+        Optional<Group> groupOptional = groupRepository.findById(id);
+
+        if (!groupOptional.isPresent())
+            return ResponseEntity.notFound().build();
+
+        group.setId(id);
+
+        groupRepository.save(group);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/group/{id}")
+    public void deleteGroup(@PathVariable int id) {
+        log.debug("delete group id:"+id);
+        groupRepository.deleteById(id);
+    }
 
 }
-*/

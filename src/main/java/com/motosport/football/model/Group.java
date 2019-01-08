@@ -19,4 +19,10 @@ public class Group {
     @Column(name = "name")
     private String name;
 
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

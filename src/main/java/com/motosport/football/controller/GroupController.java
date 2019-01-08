@@ -10,11 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-
+/*
 @Controller
 public class GroupController {
 
-    IGroupService groupService;
+    GroupService groupService;
 
     @RequestMapping("/showGrp")
     public String findCities(Model model) {
@@ -27,3 +27,4 @@ public class GroupController {
     }
 
 }
+*/

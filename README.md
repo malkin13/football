@@ -19,6 +19,9 @@
 
 # ------------------- my ------------
 
-http://localhost:8080/swagger-ui/index.html  - swagger
+use liquibase for db migrations (postgresql 10)
 
-http://localhost:8080/
+use swagger for REST APIs documentations (http://localhost:8080/swagger-ui/index.html)
+
+
+app address  - http://localhost:8080/

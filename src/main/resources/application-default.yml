@@ -1,7 +1,7 @@
 # DEBUG - mode for advanced logging
 logging:
   level:
-    ee.neotech.javatask: DEBUG
+    com.motosport.football: DEBUG
 
 # Edit settings to access the database
 database:

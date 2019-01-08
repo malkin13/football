@@ -8,7 +8,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GroupRepository extends JpaRepository<Group,Integer> {
-
-        //CrudRepository<Group,Integer> {
-        //JpaRepository<Group,Integer> {
 }
